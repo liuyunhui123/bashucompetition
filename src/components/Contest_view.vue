@@ -1,0 +1,94 @@
+<template>
+  <div class="contest_view"
+        style="font-family: 'Arial', 'Microsoft YaHei';">
+    <article class="page_content" 
+              style="margin-top: 20px; margin-left: 80px; margin-right:80px;">
+      
+      <section class="manageButtons" 
+                style="text-align: right;">
+        <el-button type="primary" @click="handleCreate()">创建比赛</el-button>
+        <el-button :plain="true" type="warning" @click="handleManage()">修改比赛</el-button>
+      </section>
+
+      <section class="todo_contests">
+        <h2 style="font-weight: bold;">正在进行或即将到来的比赛</h2>
+        <section id="table"
+                  style="text-align: center;">
+          <el-table :data="todoContestsData" border>
+            <el-table-column prop="author" label="创建者" align="center" width="180" sortable></el-table-column>
+            <el-table-column prop="title" label="名称" align="center" width="360"></el-table-column>
+            <el-table-column prop="type" label="比赛类型" align="center" width="120" sortable></el-table-column>
+            <el-table-column prop="stTime" label="开始时间" align="center" width="240" sortable></el-table-column>
+            <el-table-column prop="lastTime" label="时长" align="center" width="150" sortable></el-table-column>
+            <el-table-column prop="registers" label="报名人数" align="center" width="180" sortable></el-table-column>
+          </el-table>
+        </section>
+      </section>
+
+      <section class="already_contests">
+        <h2 style="font-weight: bold;">已经结束的比赛</h2>
+        <section class="table"
+                  style="text-align: center;">
+          <el-table :data="alreadyContestsData" border>
+            <el-table-column prop="author" label="创建者" align="center" width="180" sortable></el-table-column>
+            <el-table-column prop="title" label="名称" align="center" width="360"></el-table-column>
+            <el-table-column prop="type" label="比赛类型" align="center" width="120" sortable></el-table-column>
+            <el-table-column prop="stTime" label="开始时间" align="center" width="240" sortable></el-table-column>
+            <el-table-column prop="lastTime" label="时长" align="center" width="150" sortable></el-table-column>
+            <el-table-column prop="registers" label="报名人数" align="center" width="180" sortable></el-table-column>
+          </el-table>
+        </section>
+      </section>
+    </article>
+  
+  </div>
+</template>
+
+<script>
+ export default{
+   data() {
+     return {
+       todoContestsData: [{
+         author: '开开开',
+         title: 'NOIP模拟赛1',
+         type: 'NOIP',
+         stTime: '????-??-??',
+         lastTime: '5 小时',
+         registers: '31'
+       }, {
+         author: '哲哲哲',
+         title: 'NOIP模拟赛2',
+         type: 'NOIP',
+         stTime: '????-??-??',
+         lastTime: '5 小时',
+         registers: '31'
+       }, {
+         author: '辉辉辉',
+         title: 'NOIP模拟赛3',
+         type: 'NOIP',
+         stTime: '????-??-??',
+         lastTime: '5 小时',
+         registers: '0'
+       }
+       ],
+       alreadyContestsData: [{
+         author: 'Docter',
+         title: 'IOI模拟赛',
+         type: 'IOI',
+         stTime: '????-??-??',
+         lastTime: '???',
+         registers: 'inf'
+       }]
+     };
+   },
+   methods: {
+     handleSelect(key, keyPath) {
+       console.log(key, keyPath);
+     },
+     handleCreate() {
+     },
+     handleManage() {
+     }
+   }
+ }
+</script>
