@@ -1,8 +1,6 @@
 <template>
   <div class="contest_view"
         style="font-family: 'Arial', 'Microsoft YaHei';">
-    <article class="page_content" 
-              style="margin-top: 20px; margin-left: 80px; margin-right:80px;">
       
       <section class="manageButtons" 
                 style="text-align: right;">
@@ -14,13 +12,13 @@
         <h2 style="font-weight: bold;">正在进行或即将到来的比赛</h2>
         <section id="table"
                   style="text-align: center;">
-          <el-table :data="todoContestsData" border>
+          <el-table :data="todoContestsData" style="width: 100%;" border>
             <el-table-column prop="author" label="创建者" align="center" width="180" sortable></el-table-column>
-            <el-table-column prop="title" label="名称" align="center" width="360"></el-table-column>
+            <el-table-column prop="title" label="名称" align="center" width="240"></el-table-column>
             <el-table-column prop="type" label="比赛类型" align="center" width="120" sortable></el-table-column>
-            <el-table-column prop="stTime" label="开始时间" align="center" width="240" sortable></el-table-column>
+            <el-table-column prop="stTime" label="开始时间" align="center" width="180" sortable></el-table-column>
             <el-table-column prop="lastTime" label="时长" align="center" width="150" sortable></el-table-column>
-            <el-table-column prop="registers" label="报名人数" align="center" width="180" sortable></el-table-column>
+            <el-table-column prop="registers" label="报名人数" align="center" sortable></el-table-column>
           </el-table>
         </section>
       </section>
@@ -29,17 +27,16 @@
         <h2 style="font-weight: bold;">已经结束的比赛</h2>
         <section class="table"
                   style="text-align: center;">
-          <el-table :data="alreadyContestsData" border>
+          <el-table :data="alreadyContestsData" style="width: 100%;" border>
             <el-table-column prop="author" label="创建者" align="center" width="180" sortable></el-table-column>
-            <el-table-column prop="title" label="名称" align="center" width="360"></el-table-column>
+            <el-table-column prop="title" label="名称" align="center" width="240"></el-table-column>
             <el-table-column prop="type" label="比赛类型" align="center" width="120" sortable></el-table-column>
-            <el-table-column prop="stTime" label="开始时间" align="center" width="240" sortable></el-table-column>
+            <el-table-column prop="stTime" label="开始时间" align="center" width="180" sortable></el-table-column>
             <el-table-column prop="lastTime" label="时长" align="center" width="150" sortable></el-table-column>
-            <el-table-column prop="registers" label="报名人数" align="center" width="180" sortable></el-table-column>
+            <el-table-column prop="registers" label="报名人数" align="center" sortable></el-table-column>
           </el-table>
         </section>
       </section>
-    </article>
   
   </div>
 </template>

@@ -2,8 +2,6 @@
   <div id="problemSet"
         style="font-family: 'Arial', 'Microsoft YaHei';">
   
-    <article id="content" 
-              style="margin-left: 80px; margin-right:80px;">
       <section id="_pagination"
             style="text-align: center;">
         <el-pagination
@@ -20,7 +18,11 @@
       <section id="_content">
         <el-table :data="problemData" show-header="false">
           <el-table-column prop="ID" label="ID" width="100"></el-table-column>
-          <el-table-column prop="title" label="Title" width="360" @click="handleIntoProblem()"></el-table-column>
+          <el-table-column prop="title" label="Title" width="360">
+            <template scope="scope">
+              <router-link :to="{ path: '/problemSet/scope.row.ID'}">{{scope.row.title}}</router-link>
+            </template>
+          </el-table-column>
           <el-table-column prop="tags" label="Tag" width="200"></el-table-column>
           <el-table-column prop="sources" label="Sources"></el-table-column>
         </el-table>
@@ -37,7 +39,6 @@
           :total="400">
         </el-pagination>
       </section>
-    </article>
   
   </div>
 </template>
@@ -64,8 +65,6 @@
      },
      handleCurrentChange(val) {
        console.log('当前页: ${val}');
-     },
-     handleIntoProblem() {
      }
    }
  }

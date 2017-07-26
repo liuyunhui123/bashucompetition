@@ -18,7 +18,7 @@
                 icon="search" :on-icon-click="handleIconClick">
               </el-input>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" style="text-align: center;">
               <el-dropdown trigger="click" class="navCenter">
                 <span class="el-dropdown-link">
                 <el-button>
@@ -34,7 +34,7 @@
         </el-menu>
       </nav>
     </header>
-    <article>
+    <article style="margin-left: 80px; margin-right:80px;">
       <router-view></router-view>
     </article>
   </div>
@@ -56,7 +56,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 0px;
 }

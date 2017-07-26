@@ -1,17 +1,14 @@
 <template>
   <div class="announcement_page"
         style="font-family: 'Arial', 'Microsoft YaHei';">
-    <article class="content-container"
-              style="margin-top: 20px; margin-left: 80px; margin-right:80px;">
       <section id="Announcement"> 
-        <h1>公告 Announcement</h1>
-        <el-table :data="announceData" show-header="false">
+        <h1 style="font-size: 30px;">公告 Announcement</h1>
+        <el-table :data="announceData" style="width: 100%" show-header="false">
           <el-table-column prop="title" label="事件名" width="540"></el-table-column>
           <el-table-column prop="author" label="作者" width="180"></el-table-column>
-          <el-table-column prop="time" label="发布时间" width="180"></el-table-column>
+          <el-table-column prop="time" label="发布时间"></el-table-column>
         </el-table>
       </section>
-    </article>
 
   </div>
 </template>

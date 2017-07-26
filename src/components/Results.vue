@@ -1,17 +1,14 @@
 <template>
   <div id="rank"
         style="font-family: 'Arial', 'Microsoft YaHei';">
-  
-  <article id="page_content" 
-        style="margin-top:20px; margin-left: 80px; margin-right:80px;">
 
     <section id="_ranks">
-      <el-table :data="rankData" show-header="false">
+      <el-table :data="rankData" show-header="false" style="width:100%;">
         <el-table-column prop="Rank" label="#" width="50" align="center"></el-table-column>
         <el-table-column prop="Username" label="用户名" width="180" align="center"></el-table-column>
         <el-table-column prop="Motto" label="格言" width="540" align="center"></el-table-column>
         <el-table-column prop="Stages" label="参赛场数" width="120" align="center"></el-table-column>
-        <el-table-column prop="Rating" label="Rating" width="120"align="center"></el-table-column>
+        <el-table-column prop="Rating" label="Rating" align="center"></el-table-column>
       </el-table>
     </section>
 
@@ -23,7 +20,6 @@
       </el-pagination>
     </section>
 
-  </article>
 </div>
 </template>
 

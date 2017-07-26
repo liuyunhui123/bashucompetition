@@ -29,7 +29,7 @@ export default new Router({
         path: '/problemSet',
         component: ProblemSet
     }, {
-        path: '/problem',
+        path: '/problemSet/scope.row.ID',
         component: Problem
     }, {
         path: '/contest_view',
