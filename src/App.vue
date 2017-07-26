@@ -7,7 +7,7 @@
             <el-col :span="16">
               <el-menu-item index="/mainpage"><img src="./assets/logo_3.png"></el-menu-item>
               <el-menu-item index="/problemSet">PROBLEM</el-menu-item>
-              <el-menu-item index="/results">RESULTS</el-menu-item>
+              <el-menu-item index="/results"><i class="el-icon-date"></i>RESULTS</el-menu-item>
               <el-menu-item index="/rank">RANKS</el-menu-item>
               <el-menu-item index="/contest_view">CONTESTS</el-menu-item>
             </el-col>
