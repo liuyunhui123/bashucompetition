@@ -1,42 +1,20 @@
 <template>
   <div id="app">
+    <el-col :span="24">
     <header>
       <nav class="Navbar">
-        <el-menu theme="dark" :default-active="da" router mode="horizontal">
-          <el-row>
-            <el-col :span="16">
-              <el-menu-item index="/mainpage"><img src="./assets/logo_3.png"></el-menu-item>
-              <el-menu-item index="/problemSet">PROBLEM</el-menu-item>
-              <el-menu-item index="/results"><i class="el-icon-date"></i>RESULTS</el-menu-item>
-              <el-menu-item index="/rank">RANKS</el-menu-item>
-              <el-menu-item index="/contest_view">CONTESTS</el-menu-item>
-            </el-col>
-            <el-col :span="4">
-              <el-input class="navCenter" 
-                v-model="search_bar" 
-                placeholder="Enter Whatever you want" 
-                icon="search" :on-icon-click="handleIconClick">
-              </el-input>
-            </el-col>
-            <el-col :span="4" style="text-align: center;">
-              <el-dropdown trigger="click" class="navCenter">
-                <span class="el-dropdown-link">
-                <el-button>
-                  liuyunhui123<i class="el-icon-caret-buttom el-icon--right"></i>
-                </el-button>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>My Profile</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </el-col>
-          </el-row>
+        <el-menu router mode="horizontal">
+          <el-menu-item index="/manageProblem">题目管理</el-menu-item>
+          <el-menu-item>权限管理</el-menu-item>
+          <el-menu-item index="/addContest">添加比赛</el-menu-item>
+          <el-menu-item index="/manageContest">管理比赛</el-menu-item>
         </el-menu>
       </nav>
     </header>
     <article style="margin-left: 80px; margin-right:80px;">
       <router-view></router-view>
     </article>
+    </el-col>
   </div>
 </template>
 
@@ -45,7 +23,6 @@ export default {
   name: 'app',
   data() {
     return {
-      da: '/mainpage'
     }
   }
 }
