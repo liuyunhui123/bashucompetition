@@ -1,28 +1,37 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import editContest from '@/components/editContest'
-import addContest from '@/components/addContest'
-import manageContest from '@/components/manageContest'
-import manageProblem from '@/components/manageProblem'
-import newProb from '@/components/newProb'
+
+import main from '@/components/Contests_main'
+import prob from '@/components/Contests_prob'
+import qa from '@/components/Contests_qa'
+import rank from '@/components/Contests_rank'
+import result from '@/components/Contests_result'
+import results from '@/components/Contests_results'
+import submit from '@/components/Contests_submit'
 
 Vue.use(Router)
 
 export default new Router({
     routes: [{
-        path: '/editContest',
-        component: editContest
+        path: '/',
+        component: main
     }, {
-        path: '/manageContest',
-        component: manageContest
+        path: '/probs/:id',
+        component: prob
     }, {
-        path: '/manageProblem',
-        component: manageProblem
+        path: '/qa',
+        component: qa
     }, {
-        path: '/addContest',
-        component: addContest
+        path: '/rank',
+        component: rank
     }, {
-        path: '/newProb',
-        component: newProb
+        path: '/result',
+        component: result
+    }, {
+        path: '/results',
+        component: results
+    }, {
+        path: '/submit',
+        component: submit
     }]
 })
