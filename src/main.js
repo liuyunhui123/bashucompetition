@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import router from './router'
+import axios from 'axios'
 import 'element-ui/lib/theme-default/index.css'
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 Vue.use(ElementUI)
 

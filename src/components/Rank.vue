@@ -2,6 +2,10 @@
   <div id="rank"
         style="font-family: 'Arial', 'Microsoft YaHei';">
 
+    <section id="get">
+      <el-button @click="handleClick">Getdata</el-button>
+    </section>
+
     <section id="_ranks">
       <el-table :data="rankData" show-header="false" style="width: 100%;">
         <el-table-column prop="Rank" label="#" width="50" align="center"></el-table-column>
@@ -15,7 +19,7 @@
     <section id="_pagination" 
           style="text-align: center;">
       <el-pagination
-        :current-page="currentPage4"
+        :current-page="currentPage"
         layout="prev, pager, next, jumper">
       </el-pagination>
     </section>
@@ -26,12 +30,7 @@
  export default{
    data() {
      return {
-       rankData: [
-         {Rank: '1', Username: 'Doctor', Motto: 'BOSS', Rating: '10000'},
-         {Rank: '2', Username: '289371298', Motto: '696!', Rating: '1000'},
-         {Rank: '2', Username: 'liuguangzhe', Motto: 'Travel entertains!', Rating: '1000'},
-         {Rank: '4', Username: 'liuyunhui123', Motto: 'I good vegetable', Rating: '0'}
-       ]
+       rankData: []
      };
    },
    methods: {
@@ -43,6 +42,16 @@
      },
      handleCurrentChange(val) {
        console.log('当前页: ${val}');
+     },
+     handleClick() {
+       this.$http.get("localhost:8888")
+         .then(function(response) {
+           this.tot=response.data.tot;
+           this.rankData=response.data.rankData;
+         })
+         .catch(function(err) {
+           console.log(err);
+         });
      }
    }
  }
