@@ -59,7 +59,7 @@
          {value: '2', label: 'C'},
          {value: '3', label: 'Pascal'}
        ],
-       lang, code,
+       lang: '', code: '',
        uploaded: '0'
      };
    },
