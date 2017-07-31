@@ -94,6 +94,26 @@
        console.log(key, keyPath);
      },
      handleSubmit() {
+       if(typeMatch == 0) {
+         this.$message({
+           message: 'Match Type Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       if(typeOfLevel == []) {
+         this.$message({
+           message: 'Level Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       this.$http.post("http://localhost:8888",qs.stringify({typeMatch,typeOfLevel}));
+       this.$message({
+         message: 'Success!',
+         type: 'success'
+       });
+       this.$router.push('/manageContest');
      },
      handleQuit() {
        const h = this.$createElement;

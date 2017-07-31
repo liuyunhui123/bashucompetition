@@ -97,11 +97,14 @@
  export default{
    data() {
      return {
-       sets: '0'
+       name,type,desc,input_form,output_form,input,output,tips
      }
    },
    methods: {
      handleSubmit() {
+       this.$http.post("http://localhost:8888",
+        qs.stringify({this:name,this:type,this:desc,
+                      this:input_form,this:output_form,this:input,this:output,this:tips}))
      },
      handleQuit() {
        const h = this.$createElement;

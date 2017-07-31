@@ -1,7 +1,9 @@
 <template>
   <div id="problem_manage"
         style="font-family: 'Arial', 'Microsoft YaHei';">
-
+      <section id="so bad">
+        <el-button @click="fresh">GetData</el-button>
+      </section>
       <section id="manageProblem" style="margin-top: 30px;">
         <section id="create" style="text-align: right;">
           <el-button type="primary" @click="createProb">新建题目</el-button>
@@ -40,13 +42,25 @@
  export default{
    data() {
      return {
+       stars: [],
+       prob: '',
      }
    },
    methods: {
+     fresh() {
+       let _this = this;
+       this.$http.get("http://localhost:8888", qs.stringify())
+         .then(function(response){
+           _this.stars = response.data.stars;//获取收藏夹中的题目
+         })
+         .catch(function(err){
+           console.log(err);
+         });
+     },
      createProb() {
        this.$router.push('/newProb');
      },
-     modifyProb() {
+     modifyProb() {//这里需要我学习跳转路由……
      }
    }
  }

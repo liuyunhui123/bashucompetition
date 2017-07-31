@@ -38,7 +38,17 @@
                 <h2>在BSContest，你甚至可以新建题目<el-button :plain="true" @click="makeProb">点击这里</el-button></h2>
                 <el-button :plain="true" type="success" @click="addProb">添加题目</el-button>
                 都请选择后单击按钮添加
-                <section id="addedProbs"></section>
+                <section id="addedProbs">
+                  <el-table :data="probs">
+                    <el-table-column prop="id" label="题号" width="120"></el-table-column>
+                    <el-table-column prop="name" label="名称" width="120"></el-table-column>
+                    <el-table-column prop="tags" label="标签" width="120">
+                      <template scope="scope" v-for="tag in tags">
+                        <el-tag :key="tag" type="random">{{ tag }}</el-tag>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </section>
               </el-col>
             </el-row>
           </section>
@@ -62,7 +72,7 @@
               <el-col :span="12">
                 <h1>
                   <el-row>
-                    <el-checkbox-group v-model="typeOfLevel" v-for="level in Levels">
+                    <el-checkbox-group v-model="typeOfLevel" v-for="level in Levels" :key="level">
                       <el-col :span='3'><el-checkbox :label="level"></el-checkbox></el-col>
                     </el-checkbox-group>
                   </el-row>
@@ -85,6 +95,8 @@
    data() {
      return {
        typeMatch: '0',
+       newProb: '',
+       probs: [],
        Levels: ['普及', '提高', 'CQOI', 'NOI', '临时', '扩大', '测试'],
        typeOfLevel: []
      };
@@ -93,7 +105,44 @@
      handleSelect(key, keyPath) {
        console.log(key, keyPath);
      },
+     random() {
+       return 'danger';
+     },
+     addProb() {
+       var name, tags;
+       this.$http.get("http://localhost:8888", qs.stringify(this.newProb))
+         //newProb is the 'id', and we wanna get the 'name' and 'tag' 
+         .then(function(response){
+           name = response.data.name;
+           tags = response.data.tags;
+         })
+         .catch(function(err){
+           console.log(err);
+         })
+       this.probs.push({id,name,tags});// NOT sure whether adding an element to an array should be like what
+     },
      handleSubmit() {
+       if(this.typeMatch == 0) {
+         this.$message({
+           message: 'Match Type Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       if(this.typeOfLevel == []) {
+         this.$message({
+           message: 'Level Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       this.$http.post("http://localhost:8888",qs.stringify({this:probs,this:typeMatch,this:typeOfLevel}));
+       //不知道为什么这里vsCode提示我使用':'来代替'.' 。。。 你试试是否可行？
+       this.$message({
+         message: 'Success!',
+         type: 'success'
+       });
+       this.$router.push('/manageContest');
      },
      handleQuit() {
        const h = this.$createElement;

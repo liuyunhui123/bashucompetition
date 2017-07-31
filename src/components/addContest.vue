@@ -78,7 +78,7 @@
               <el-col :span="12">
                 <h1>
                   <el-row>
-                    <el-checkbox-group v-model="typeOfLevel" v-for="level in Levels">
+                    <el-checkbox-group v-model="typeOfLevel" v-for="level in Levels" :key="level">
                       <el-col :span='3'><el-checkbox :label="level"></el-checkbox></el-col>
                     </el-checkbox-group>
                   </el-row>
@@ -101,13 +101,55 @@
    data() {
      return {
        typeBig: '0',
+       newProb: '',
+       probs: '',
        typeMatch: '0',
        Levels: ['普及', '提高', 'CQOI', 'NOI', '临时', '扩大', '测试'],
        typeOfLevel: []
      };
    },
    methods: {
+     handleSelect(key, keyPath) {
+       console.log(key, keyPath);
+     },
+     random() {
+       return 'danger';
+     },
+     addProb() {
+       var name, tags;
+       this.$http.get("http://localhost:8888", qs.stringify(this.newProb))
+         //newProb is the 'id', and we wanna get the 'name' and 'tag' 
+         .then(function(response){
+           name = response.data.name;
+           tags = response.data.tags;
+         })
+         .catch(function(err){
+           console.log(err);
+         })
+       this.probs.push({id,name,tags});// NOT sure whether adding an element to an array should be like what
+     },
      handleSubmit() {
+       if(this.typeMatch == 0) {
+         this.$message({
+           message: 'Match Type Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       if(this.typeOfLevel == []) {
+         this.$message({
+           message: 'Level Required!',
+           type: 'danger'
+         });
+         return ;
+       }
+       this.$http.post("http://localhost:8888",qs.stringify({this:probs,this:typeMatch,this:typeOfLevel}));
+       //不知道为什么这里vsCode提示我使用':'来代替'.' 。。。 你试试是否可行？
+       this.$message({
+         message: 'Success!',
+         type: 'success'
+       });
+       this.$router.push('/manageContest');
      }
    }
  }

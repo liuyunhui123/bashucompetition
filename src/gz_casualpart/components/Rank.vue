@@ -8,11 +8,11 @@
 
     <section id="_ranks">
       <el-table :data="rankData" show-header="false" style="width: 100%;">
-        <el-table-column prop="Rank" label="#" width="50" align="center"></el-table-column>
-        <el-table-column prop="Username" label="用户名" width="180" align="center"></el-table-column>
-        <el-table-column prop="Motto" label="格言" width="540" align="center"></el-table-column>
-        <el-table-column prop="Stages" label="参赛场数" width="120" align="center"></el-table-column>
-        <el-table-column prop="Rating" label="Rating" align="center"></el-table-column>
+        <el-table-column type="index" width="50" align="center"></el-table-column>
+        <el-table-column prop="username" label="用户名" width="180" align="center"></el-table-column>
+        <el-table-column prop="motto" label="格言" width="540" align="center"></el-table-column>
+        <el-table-column prop="racenumber" label="参赛场数" width="120" align="center"></el-table-column>
+        <el-table-column prop="rating" label="Rating" align="center"></el-table-column>
       </el-table>
     </section>
 
@@ -27,10 +27,11 @@
 </template>
 
 <script>
+ import qs from 'qs';
  export default{
    data() {
      return {
-       rankData: []
+      rankData:[{username:'',rating:'',motto:'',racenumber:''}]
      };
    },
    methods: {
@@ -38,16 +39,16 @@
        console.log(key, keyPath);
      },
      handleSizeChange(val) {
-       console.log('每页 ${val} 条');
+       console.log('每页 ${val} 条'); 
      },
      handleCurrentChange(val) {
        console.log('当前页: ${val}');
      },
      handleClick() {
-       this.$http.get("localhost:8888")
-         .then(function(response) {
-           this.tot=response.data.tot;
-           this.rankData=response.data.rankData;
+	     let _this = this
+       this.$http.post("http://localhost:8888",qs.stringify({requireuser: "tester3"}))
+			   .then(function(response) {
+		       _this.rankData=response.data.rankData;
          })
          .catch(function(err) {
            console.log(err);
