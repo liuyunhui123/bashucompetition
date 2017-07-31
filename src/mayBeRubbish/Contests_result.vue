@@ -1,14 +1,10 @@
 <template>
   <div id="contests_result"
         style="font-family: 'Arial', 'Microsoft YaHei';">
-      
-      <section id="so bad">
-        <el-button @click="fresh">GetData</el-button>
-      </section>
 
       <section id="result">
         <el-row>
-        <el-table :data="points" style="width: 100%;">
+        <el-table :data="points">
           <el-col :span="3">
           <el-table-column type="expand">
             <template scope="props">
@@ -34,22 +30,19 @@
  export default{
    data() {
      return {
+       probName: '挑战NPC',
+       contest_name: 'WC2016: Hello Hell!',
+       username: 'liuyunhui123',
+       user_rank: '999',
+       probs: [
+         {index: '1',name: 'P1'}, {index: '2',name: 'P2'},{index: '3',name: 'P3'}
+       ],
        points: [{
          key: '1', state: 'WA', score: '10', desc: 'Not the same with standard output'}
        ]
      };
    },
    methods: {
-     fresh() {
-       let _this = this;
-       this.$http.get("http://localhost:8888", qs.stringify())
-         .then(function(response){
-           _this.points = response.data.points;
-         })
-         .catch(function(err){
-           console.log(err);
-         });
-     },
      handleSelect(key, keyPath) {
        console.log(key, keyPath);
      },

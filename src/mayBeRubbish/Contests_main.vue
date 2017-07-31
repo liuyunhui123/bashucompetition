@@ -2,9 +2,6 @@
   <div id="contests_main"
         style="font-family: 'Arial', 'Microsoft YaHei';">
 
-      <section id="so bad">
-        <el-button @click="fresh">GetData</el-button>
-      </section>
       <section id="timeOfMatch">
         <el-row>
           <el-progress :text-inside="true" :stroke-width="18" :percentage="25"></el-progress>
@@ -30,7 +27,7 @@
                 id="table"
                 style="text-align: center;">
             <el-table :data="probs" border>
-              <el-table-column type="index" align="center" width="180"></el-table-column>
+              <el-table-column prop="index" label="编号" align="center" width="180"></el-table-column>
               <el-table-column label="名称" align="center" width="540">
                 <template scope="scope">
                   <router-link to="">{{scope.row.title}}</router-link>
@@ -82,32 +79,16 @@
  export default{
    data() {
      return {
+       contest_name: 'WC2016: Hello Hell!',
+       username: 'liuyunhui123',
+       user_rank: '999',
        timeLeft: '+1s',
        typeOfMatch: 'NOIP',
        numberOfProb: '3',
-       sumScore: '300',
-       probs: [],//{title,type}//这边是否应该添加一个题目的链接属性呢……
-       announces: [],//{time,content}
-       asks: []//{time,Q,A}
+       sumScore: '300'
      };
    },
    methods: {
-     fresh() {
-       let _this = this;
-       this.$http.get("http://localhost8888", qs.stringify())
-         .then(function(response){
-           _this.timeLeft = response.data.timeLeft;
-           _this.typeOfMatch = response.data.typeOfMatch;
-           _this.numberOfProb = response.data.numberOfProb;
-           _this.sumScore = response.data.sumScore;
-           _this.probs = response.data.probs;
-           _this.announces = response.data.announces;
-           _this.asks = response.data.asks;
-         })
-         .catch(function(err){
-           console.log(err);
-         });
-     },
      handleSelect(key, keyPath) {
        console.log(key, keyPath);
      }

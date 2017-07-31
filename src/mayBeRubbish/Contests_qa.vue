@@ -2,9 +2,6 @@
   <div id="contests_qa"
         style="font-family: 'Arial', 'Microsoft YaHei';">
 
-      <section id="so bad">
-        <el-button @click="fresh">GetData</el-button>
-      </section>
       <section id="q">
         <el-row>
           <el-col :span="3"><h2>提出问题</h2></el-col>
@@ -48,6 +45,9 @@
  export default{
    data() {
      return {
+       contest_name: 'WC2016: Hello Hell!',
+       username: 'liuyunhui123',
+       user_rank: '999',
        probs: [
          {value: '1', label: '挑战NPC'},
          {value: '2', label: '论战捆竹竿'},
@@ -66,19 +66,6 @@
        console.log(key, keyPath);
      },
      submitQuestion() {
-       this.$http.post("http://localhost:8888", 
-         qs.stringify({question, q_prob}));
-     },
-     fresh() {
-       let _this = this;
-       this.$http.get("http://localhost:8888", qs.stringify())
-         .then(function(response){
-           _this.probs = response.data.probs;
-           _this.qaData = response.data.qaData;
-         })
-         .catch(function(err){
-           console.log(err);
-         });
      }
    }
  }

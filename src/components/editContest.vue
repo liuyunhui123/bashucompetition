@@ -109,8 +109,8 @@
        return 'danger';
      },
      addProb() {
-       var name, tags;
-       this.$http.get("http://localhost:8888", qs.stringify(this.newProb))
+       var name, tags, newProb = this.newProb;
+       this.$http.get("http://localhost:8888", qs.stringify(newProb))
          //newProb is the 'id', and we wanna get the 'name' and 'tag' 
          .then(function(response){
            name = response.data.name;
@@ -119,7 +119,7 @@
          .catch(function(err){
            console.log(err);
          })
-       this.probs.push({id,name,tags});// NOT sure whether adding an element to an array should be like what
+       this.probs.push({newProb, name, tags});// NOT sure whether adding an element to an array should be like what
      },
      handleSubmit() {
        if(this.typeMatch == 0) {

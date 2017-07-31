@@ -2,6 +2,20 @@
   <div id="problem_manage"
         style="font-family: 'Arial', 'Microsoft YaHei';">
 
+      <section id="import">
+        <section>
+          <el-row>
+            <el-col :span="6"><h1>引入题目</h1></el-col>
+            <el-col :span="12">
+              <h1><el-input v-model="motherID" placeholder="直接引入母OJ题号吧！"></el-input></h1>
+            </el-col>
+          </el-row>
+        </section>
+        <section id="but" style="text-align: center;">
+            <el-button type="primary" @click="handleImport">引入</el-button>
+        </section>
+      </section>
+
       <section id="newProb">
         <section id="name">
           <el-row>
@@ -12,6 +26,17 @@
           </el-row>
         </section>
         
+        <section id="ls">
+          <el-row>
+            <el-col :span="6"><h1>时间与内存限制</h1></el-col>
+            <el-col :span="6">
+              <h1><el-input v-model="tl" placeholder="选手最大运行多久程序呢？"></el-input></h1>
+            </el-col>
+            <el-col :span="6">
+              <h1><el-input v-model="ml" placeholder="选手程序内存限制多少比较合适呢？"></el-input></h1>
+            </el-col>
+          </el-row>
+        </section>
         <section id="type">
           <el-row>
             <el-col :span="6"><h1>题目类型</h1></el-col>
@@ -19,7 +44,7 @@
               <h1>
                 <el-select v-model="type" placeholder="我会是什么类型的题目呢">
                   <el-option 
-                    v-for="typ in availbleTypes" 
+                    v-for="typ in availableTypes" 
                     :key="typ.value" :label="typ.name" :value="typ.value"></el-option>
                 </el-select>
               </h1>
@@ -85,6 +110,21 @@
           </el-row>
         </section>
 
+        <section id="power">
+          <el-row>
+            <el-col :span="6"><h1>规划选手权限</h1></el-col>
+            <el-col :span="12">
+              <h1>
+                <el-row>
+                  <el-checkbox-group v-model="typeOfLevel" v-for="level in Levels" :key="level">
+                    <el-col :span='3'><el-checkbox :label="level"></el-checkbox></el-col>
+                  </el-checkbox-group>
+                </el-row>
+              </h1>
+            </el-col>
+          </el-row>
+        </section>
+
         <section id="buts" style="text-align: center;">
           <el-button type="primary" @click="handleSubmit">提交</el-button>
           <el-button :plain="true" type="danger" @click="handleQuit">退出</el-button>
@@ -97,14 +137,31 @@
  export default{
    data() {
      return {
-       name,type,desc,input_form,output_form,input,output,tips
+       availableTypes: [
+         {name: '传统型', value: '1'},
+         {name: '提交答案型', value: '2'},
+         {name: '交互型', value: '3'}
+       ],
+       Levels: ['普及', '提高', 'CQOI', 'NOI', '临时', '扩大', '测试'],
+       motherID: '',
+       tl: '', ml: '', name: '', type: '', desc: '',
+       input_form: '', output_form: '', input: '', output: '', tips: '',
+       typeOfLevel: []
      }
    },
    methods: {
+     handleImport() {
+       this.$http.post("http://localhost:8888", qs.stringify(motherID));
+       tihs.$message("success");
+       this.$router.go(-1);
+     },
      handleSubmit() {
+       var tl = this.tl, ml = this.ml;
+       var name = this.name, type = this.type, desc = this.desc, input_form = this.input_form;
+	     var output_form = this.output_form, input = this.input, output = this.output, tips = this.tips; 
        this.$http.post("http://localhost:8888",
-        qs.stringify({this:name,this:type,this:desc,
-                      this:input_form,this:output_form,this:input,this:output,this:tips}))
+        qs.stringify({name,type,desc,
+                      input_form,output_form,input,output,tips}));
      },
      handleQuit() {
        const h = this.$createElement;

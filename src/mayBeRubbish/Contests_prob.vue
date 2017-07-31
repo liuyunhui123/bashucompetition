@@ -2,9 +2,6 @@
   <div id="contests_prob"
         style="font-family: 'Arial', 'Microsoft YaHei';">
 
-      <section id="so bad">
-        <el-button @click="fresh">GetData</el-button>
-      </section>
       <section id="heading" style="text-align: center">
         <h1 style="margin-bottom: 0; font-size:30px">#{{problemID}}:{{name}}</h1>
         </br>
@@ -74,22 +71,6 @@
      };
    },
    methods: {
-     fresh() {
-       let _this = this;
-       this.$http.get("http://localhost:8888",
-        qs.stringify({name,type,desc,
-                      input_form,output_form,input,output,tips}))
-        .then(function(response){
-          _this.tl = response.data.tl; _this.ml = response.data.ml;
-          _this.name = response.data.name; _this.type = response.data.type;
-          _this.desc = response.data.desc; _this.input_form = response.data.input_form;
-	        _this.output_form = response.data.output_form; _this.input = response.data.input;
-          _this.output = response.data.output; _this.tips = response.data.tips; 
-        })
-        .catch(function(err){
-          console.log(err);
-        });
-     },
      handleSelect(key, keyPath) {
        console.log(key, keyPath);
      },
